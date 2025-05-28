@@ -1,12 +1,10 @@
 import { test, expect } from '@playwright/test';
 import { testData } from '../Data/test_data';
+import { login } from '../helpers';
 
 
 test.only('should be able to checkout', async ({ page }) => {
-    await page.goto('https://www.saucedemo.com/');
-    await page.locator('#user-name').fill(testData.usernames.valid);
-    await page.locator('#password').fill(testData.password);
-    await page.locator('#login-button').click();
+    login(page, testData.usernames.valid, testData.password)
     await page.waitForTimeout(2000);
     await page.locator('[data-test="add-to-cart-sauce-labs-backpack"]').click();
     await page.locator('[data-test="shopping-cart-link"]').click();
