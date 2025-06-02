@@ -2,7 +2,7 @@
 export const testData  = {
     usernames: {
         valid: 'standard_user',
-        problem: 'problem_user',
+        invalid: 'invalid_user',
     }, 
     password: 'secret_sauce',
 } 
