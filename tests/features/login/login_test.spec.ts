@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 import { testData } from '../../Data/test_data';
-import { login } from '../../helpers';
+import { login } from '../../sources/helpers';
 import { locators } from './login_locators';
 
 let erroMessage = 'Epic sadface: Username and password do not match any user in this service'
@@ -17,7 +17,7 @@ test.skip('negative test for invalid username', async ({ page }) => {
 })
 
 test.skip('negative test for invalid password', async ({ page }) => {
-    await login(page, testData.usernames.valid, "invalid_password")
+    await login(page, testData.usernames.valid, testData.invalidPassword)
     await expect(page.locator(locators.error)).toContainText(erroMessage);
 })
 

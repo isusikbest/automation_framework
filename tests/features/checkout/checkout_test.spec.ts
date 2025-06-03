@@ -1,8 +1,8 @@
 import { test, expect } from '@playwright/test';
 import { testData } from '../../Data/test_data';
-import { login } from '../../helpers';
-import { addToCart } from '../../helpers';
-import { moveToCartAndCheckout } from '../../helpers';
+import { login } from '../../sources/helpers';
+import { addToCart } from '../../sources/helpers';
+import { moveToCartAndCheckout } from '../../sources/helpers';
 import { locators } from './checkout_locators';
 
  let completeMessage = 'Checkout: Complete!'

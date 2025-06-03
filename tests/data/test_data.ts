@@ -5,5 +5,6 @@ export const testData  = {
         invalid: 'invalid_user',
     }, 
     password: 'secret_sauce',
+    invalidPassword: 'invalid_password'
 } 
 
