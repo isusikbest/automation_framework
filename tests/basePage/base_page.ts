@@ -2,6 +2,7 @@ import { Page , expect } from '@playwright/test'
 
 export class BasePage {
     protected page: Page
+    protected baseUrl: string =  "https://www.saucedemo.com/"
 
     constructor(page: Page) {
         this.page = page
