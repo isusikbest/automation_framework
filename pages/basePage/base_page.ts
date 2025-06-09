@@ -1,4 +1,4 @@
-import { Page , expect } from '@playwright/test'
+import { Page } from '@playwright/test'
 
 export class BasePage {
     protected page: Page
@@ -8,7 +8,7 @@ export class BasePage {
         this.page = page
     }
 
-    async  goto(url:string): Promise<void> {
+    async  goto(url: string): Promise<void> {
         await this.page.goto(url)
     }
 
@@ -16,7 +16,7 @@ export class BasePage {
         await this.page.waitForLoadState('load')
     }
 
-    async getUrl(): Promise<void> {
-       await this.page.url()
+    async getUrl(): Promise<string> {
+      return await this.page.url()
     }
 }
