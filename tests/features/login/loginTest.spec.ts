@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 import { testData } from '../../Data/test_data';
 import { login } from '../../sources/helpers';
-import { locators } from './login_locators';
+import { locators } from './loginLocators';
 
 let erroMessage = 'Epic sadface: Username and password do not match any user in this service'
 let productsTitle = 'Products'

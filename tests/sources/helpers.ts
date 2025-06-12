@@ -1,17 +1,11 @@
 import { Page } from "@playwright/test";
 import { expect } from "@playwright/test";
-import { locators } from "./helpers_locators";
+import { locators } from "./helpersLocators";
 
 let addToCartText = 'Add to cart'
 let checkoutText = 'Checkout'
 let finishText = 'Finish'
 
- export async function login(page: Page, username: string, password: string) {
-    await page.goto('https://www.saucedemo.com/');
-    await page.locator(locators.userNameId).fill(username);
-    await page.locator(locators.passwordId).fill(password);
-    await page.locator(locators.loginBtnId).click();
-}
 
  export async function addToCart(page: Page, index: number) {
     const item = page.locator(locators.itemClass).nth(index)

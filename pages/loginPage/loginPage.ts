@@ -1,25 +1,44 @@
-import { BasePage } from "../basePage/base_page";
+import { BasePage } from "../basePage/basePage";
 import { Locator, Page }from '@playwright/test'
-import { locators } from "../../tests/sources/helpers_locators";
+
 
 export class LoginPage extends BasePage {
-    protected userNameLocator: Locator
-    protected passwordLocator: Locator
-    protected loginBtnLocator: Locator
+    protected userNameId: Locator
+    protected passwordId: Locator
+    protected loginBtnId: Locator
+    protected errorLocator: Locator
+   
 
     constructor(page: Page) {
         super(page)
-        this.userNameLocator = page.locator(locators.userNameId)
-        this.passwordLocator = page.locator(locators.passwordId)
-        this.loginBtnLocator = page.locator(locators.loginBtnId)
+        this.userNameId = page.locator('#user-name')
+        this.passwordId = page.locator('#password')
+        this.loginBtnId = page.locator('#login-button')
+        this.errorLocator = page.locator('[data-test="error"]')
+       
     }
 
+    async waitingForLoginForm(): Promise<void> {
+        await this.userNameId.waitFor({state: 'visible'})
+        await this.passwordId.waitFor({state: 'visible'})
+    }
+
+    async clearForm(): Promise<void> {
+        await this.userNameId.fill('')
+        await this.passwordId.fill('')
+    }
+
+    async checkError(): Promise<void> {
+        await this.userNameId.fill('invalidUsername')
+        await this.passwordId.fill('invalidPassrod')
+        await this.errorLocator.waitFor({state: 'visible'})
+    }
 
     async login(username: string, password: string): Promise<void> {
         await this.goto(this.baseUrl)
-        await this.waitForLoad()
-        await this.userNameLocator.fill(username)
-        await this.passwordLocator.fill(password)
-        await this.loginBtnLocator.click()
+        await this.waitingForLoginForm()
+        await this.userNameId.fill(username)
+        await this.passwordId.fill(password)
+        await this.loginBtnId.click()
     }
 }

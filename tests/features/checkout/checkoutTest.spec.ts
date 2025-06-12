@@ -3,7 +3,7 @@ import { testData } from '../../Data/test_data';
 import { login } from '../../sources/helpers';
 import { addToCart } from '../../sources/helpers';
 import { moveToCartAndCheckout } from '../../sources/helpers';
-import { locators } from './checkout_locators';
+import { locators } from './checkoutLocators';
 
  let completeMessage = 'Checkout: Complete!'
 

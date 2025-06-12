@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 import { testData } from '../../Data/test_data';
-import { login } from '../../helpers';
-import { locators } from './cart_locators';
+import { login } from '../../sources/helpers';
+import { locators } from './cartLocators';
 
  
  let expectedBtnText = 'Remove'
