@@ -9,7 +9,7 @@ let finishText = 'Finish'
 
  export async function addToCart(page: Page, index: number) {
     const item = page.locator(locators.itemClass).nth(index)
-    await item.getByRole('button', {name: addToCartText}).click
+    
  }
  export async function moveToCartAndCheckout(page:Page, firstName: string, lastName: string, postcode: string) {
    await page.locator(locators.cartBtn).click();

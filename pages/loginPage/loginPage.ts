@@ -3,10 +3,10 @@ import { Locator, Page }from '@playwright/test'
 
 
 export class LoginPage extends BasePage {
-    protected userNameId: Locator
-    protected passwordId: Locator
-    protected loginBtnId: Locator
-    protected errorLocator: Locator
+    private userNameId: Locator
+    private passwordId: Locator
+    private loginBtnId: Locator
+    private errorLocator: Locator
    
 
     constructor(page: Page) {
@@ -29,8 +29,6 @@ export class LoginPage extends BasePage {
     }
 
     async checkError(): Promise<void> {
-        await this.userNameId.fill('invalidUsername')
-        await this.passwordId.fill('invalidPassrod')
         await this.errorLocator.waitFor({state: 'visible'})
     }
 
