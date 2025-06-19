@@ -4,30 +4,31 @@ import { CatalogPage } from "../catalogPage/catalogPage";
 import { CheckoutPage } from "../checkoutPage/checkoutPage";
 
 export  class CartPage extends BasePage {
-    private cartTittleLocator: Locator
-    private checkoutBtnLocator: Locator
-    private backToShoppingBtn: Locator
+    private cartTittle: Locator
+    private checkoutBtn: Locator
+    private backToCatalogBtn: Locator
+    
     
 
     constructor(page: Page) {
         super(page)
 
-        this.cartTittleLocator = page.locator('[data-test="title"]')
-        this.checkoutBtnLocator = page.locator('[data-test="checkout"]')
-        this.backToShoppingBtn = page.locator('[data-test="continue-shopping"]')
+        this.cartTittle = page.locator('[data-test="title"]')
+        this.checkoutBtn = page.locator('[data-test="checkout"]')
+        this.backToCatalogBtn = page.locator('[data-test="continue-shopping"]')
     }
 
-    async waitingForCartPage(): Promise<void> {
-        await this.cartTittleLocator.waitFor({state: 'visible'})
+    async waitForLoad(): Promise<void> {
+        await this.cartTittle.waitFor({state: 'visible'})
     }
 
     async backToShopping(): Promise<CatalogPage> {
-        await this.backToShoppingBtn.click()
+        await this.backToCatalogBtn.click()
         return new CatalogPage(this.page)
     }
 
     async goToCheckout(): Promise<CheckoutPage> {
-       await this.checkoutBtnLocator.click()
+       await this.checkoutBtn.click()
        return new CheckoutPage(this.page)
     }
 

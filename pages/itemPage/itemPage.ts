@@ -4,31 +4,31 @@ import { CatalogPage } from "../catalogPage/catalogPage";
 
 
 export class ItemPage extends BasePage  {
-    private itemNameLocator: Locator
-    private itemDescriptionLocator: Locator
-    private itemPriceLocator: Locator
+    private itemName: Locator
+    private itemDescription: Locator
+    private itemPrice: Locator
     private addToCartBtn: Locator
-    private backToCatalodLocator: Locator
+    private backToCatalod: Locator
 
 
     constructor(page: Page) {
         super(page)
-      this.itemNameLocator = page.locator('[data-test="inventory-item-name"]')
-      this.itemDescriptionLocator = page.locator('data-test="inventory-item-desc"')
-      this.itemPriceLocator = page.locator('data-test="inventory-item-price"')
+      this.itemName = page.locator('[data-test="inventory-item-name"]')
+      this.itemDescription = page.locator('data-test="inventory-item-desc"')
+      this.itemPrice = page.locator('data-test="inventory-item-price"')
       this.addToCartBtn = page.locator('data-test="add-to-cart"')
-      this.backToCatalodLocator = page.locator('[data-test="back-to-products"]')
+      this.backToCatalod = page.locator('[data-test="back-to-products"]')
     }
 
-    async checkItemPageIsVisible(): Promise<void> {
-        await this.itemNameLocator.waitFor({state: 'visible'})
-        await this.itemDescriptionLocator.waitFor({state: 'visible'})
-        await this.itemPriceLocator.waitFor({state: 'visible'})
+    async waitForLoad(): Promise<void> {
+        await this.itemName.waitFor({state: 'visible'})
+        await this.itemDescription.waitFor({state: 'visible'})
+        await this.itemPrice.waitFor({state: 'visible'})
         await this.addToCartBtn.waitFor({state: 'visible'})
     }
 
     async backToCatalog(): Promise<CatalogPage> {
-        await this.backToCatalodLocator.click()
+        await this.backToCatalod.click()
         return new CatalogPage(this.page)
     }
 

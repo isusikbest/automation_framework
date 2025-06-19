@@ -5,36 +5,36 @@ import { CartPage } from "../cartPage/cartPage";
 
 
 export class CheckoutPage extends BasePage {
-    private firstNameLocator: Locator
-    private lastNameLocator: Locator
-    private postalCodeLocator: Locator
-    private continueBtnLocator: Locator
-    private cancelBtnLocator: Locator
+    private firstName: Locator
+    private lastName: Locator
+    private postalCode: Locator
+    private continueBtn: Locator
+    private cancelBtn: Locator
 
 
     constructor(page: Page) {
         super(page)
 
-      this.firstNameLocator = page.locator('[data-test="firstName"]') 
-      this.lastNameLocator = page.locator('[data-test="lastName"]')
-      this.postalCodeLocator = page.locator('[data-test="postalCode"]')
-      this.continueBtnLocator = page.locator('[data-test="continue"]')
-      this.cancelBtnLocator = page.locator('[data-test="cancel"]')
+      this.firstName = page.locator('[data-test="firstName"]') 
+      this.lastName = page.locator('[data-test="lastName"]')
+      this.postalCode = page.locator('[data-test="postalCode"]')
+      this.continueBtn = page.locator('[data-test="continue"]')
+      this.cancelBtn = page.locator('[data-test="cancel"]')
     }
 
     async fillInfoForm(firstName: string, lastName: string, postalCode: string): Promise<void> {
-        await this.firstNameLocator.fill(firstName)
-        await this.lastNameLocator.fill(lastName)
-        await this.postalCodeLocator.fill(postalCode)
+        await this.firstName.fill(firstName)
+        await this.lastName.fill(lastName)
+        await this.postalCode.fill(postalCode)
     }
 
     async checkout(): Promise<ConfrirmPage> {
-        await this.continueBtnLocator.click()
+        await this.continueBtn.click()
         return new ConfrirmPage(this.page)
     }
 
     async cancelPurchase(): Promise<CartPage> {
-        await this.cancelBtnLocator.click()
+        await this.cancelBtn.click()
         return new CartPage(this.page)
     }
 }

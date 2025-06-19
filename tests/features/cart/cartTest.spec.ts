@@ -1,13 +1,17 @@
 import { test, expect } from '@playwright/test';
 import { testData } from '../../Data/test_data';
-import { login } from '../../sources/helpers';
-import { locators } from './cartLocators';
+import { CartPage } from '../../../pages/cartPage/cartPage';
+import { LoginPage } from '../../../pages/loginPage/loginPage';
+import { CatalogPage } from '../../../pages/catalogPage/catalogPage';
 
- 
- let expectedBtnText = 'Remove'
 
 test.skip('should be able to add to cart', async ({ page }) => {
-    login(page, testData.usernames.valid, testData.password)
-    await page.locator(locators.addtoCartBtn).click();
-    await expect(page.locator(locators.addtoCartBtn)).toContainText(expectedBtnText);
+    const loginPage = new LoginPage(page)
+    const cartPage = new CartPage(page)
+    const catalogPage = new CatalogPage(page)
+    
+   await loginPage.login(testData.usernames.valid, testData.password)
+   await catalogPage.addToCart(3)
+   await catalogPage.openCart()
+   await cartPage.waitForLoad()
 })
