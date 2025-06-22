@@ -1,5 +1,5 @@
 import { BasePage } from "../basePage/basePage";
-import { Locator, Page }from '@playwright/test'
+import { Locator, Page, expect }from '@playwright/test'
 
 
 export class LoginPage extends BasePage {
@@ -7,7 +7,7 @@ export class LoginPage extends BasePage {
     private passwordId: Locator
     private loginBtnId: Locator
     private error: Locator
-   
+    private errorText: string = 'Epic sadface: Username and password do not match any user in this service' 
 
     constructor(page: Page) {
         super(page)
@@ -30,6 +30,7 @@ export class LoginPage extends BasePage {
 
     async checkError(): Promise<void> {
         await this.error.waitFor({state: 'visible'})
+        await expect(this.error).toContainText(this.errorText)
     }
 
     async login(username: string, password: string): Promise<void> {

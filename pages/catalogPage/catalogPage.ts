@@ -1,4 +1,4 @@
-import { Page, Locator } from "@playwright/test";
+import { Page, Locator, expect } from "@playwright/test";
 import { BasePage } from "../basePage/basePage";
 import { ItemPage } from "../itemPage/itemPage";
 
@@ -46,6 +46,10 @@ export class CatalogPage extends BasePage {
 
     async waitForLoad(): Promise<void> {
         await this.title.waitFor({state: 'visible'})
+    }
+
+    async verifyCatalogPage(): Promise<void> {
+        await expect(this.productCard.first()).toBeVisible()
     }
 
     async sortByItem(itemText: string): Promise<void> {

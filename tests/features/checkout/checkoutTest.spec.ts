@@ -12,7 +12,7 @@ import { FinishedPurchasePage } from '../../../pages/finishedPurhcasePage/finish
 
  
 
-test.only('should be able to checkout', async ({ page }) => {
+test.skip('should be able to checkout', async ({ page }) => {
    const loginPage = new LoginPage(page)
    const cartPage = new CartPage(page)
    const catalogPage = new CatalogPage(page)

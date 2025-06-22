@@ -28,7 +28,7 @@ export class CheckoutPage extends BasePage {
         await this.postalCode.fill(postalCode)
     }
 
-    async checkout(): Promise<ConfrirmPage> {
+    async checkout(): Promise<ConfirmPage> {
         await this.continueBtn.click()
         return new ConfirmPage(this.page)
     }
