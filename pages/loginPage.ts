@@ -1,5 +1,6 @@
-import { BasePage } from "../basePage/basePage";
+import { BasePage } from "./basePage";
 import { Locator, Page, expect }from '@playwright/test'
+import { CatalogPage } from "./catalogPage";
 
 
 export class LoginPage extends BasePage {
@@ -33,11 +34,12 @@ export class LoginPage extends BasePage {
         await expect(this.error).toContainText(this.errorText)
     }
 
-    async login(username: string, password: string): Promise<void> {
+    async login(username: string, password: string): Promise<CatalogPage> {
         await this.goto(this.baseUrl)
         await this.waitForLoad()
         await this.userNameId.fill(username)
         await this.passwordId.fill(password)
         await this.loginBtnId.click()
+        return new CatalogPage(this.page)
     }
 }

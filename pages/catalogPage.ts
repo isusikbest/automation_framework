@@ -1,6 +1,7 @@
 import { Page, Locator, expect } from "@playwright/test";
-import { BasePage } from "../basePage/basePage";
-import { ItemPage } from "../itemPage/itemPage";
+import { BasePage } from "./basePage";
+import { ItemPage } from "./itemPage";
+import { CartPage } from "./cartPage";
 
 
 export class CatalogPage extends BasePage {
@@ -56,7 +57,8 @@ export class CatalogPage extends BasePage {
         await this.sortBy.selectOption({label: itemText})
     }
 
-    async openCart(): Promise<void> {
+    async openCart(): Promise<CartPage> {
         await this.cartBtn.click()
+        return new CartPage(this.page)
     }
 }

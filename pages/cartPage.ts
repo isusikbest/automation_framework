@@ -1,7 +1,7 @@
 import { Locator, Page, expect } from "@playwright/test";
-import { BasePage } from "../basePage/basePage";
-import { CatalogPage } from "../catalogPage/catalogPage";
-import { CheckoutPage } from "../checkoutPage/checkoutPage";
+import { BasePage } from "./basePage";
+import { CatalogPage } from "./catalogPage";
+import { CheckoutPage } from "./checkoutPage";
 
 export  class CartPage extends BasePage {
     private cartTittle: Locator

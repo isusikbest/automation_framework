@@ -1,7 +1,7 @@
 import { Locator, Page } from "@playwright/test";
-import { BasePage } from "../basePage/basePage";
-import { ConfirmPage } from "../confirmPage/confirmPage";
-import { CartPage } from "../cartPage/cartPage";
+import { BasePage } from "./basePage";
+import { ConfirmPage } from "./confirmPage";
+import { CartPage } from "./cartPage";
 
 
 export class CheckoutPage extends BasePage {
