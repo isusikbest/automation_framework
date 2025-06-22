@@ -1,4 +1,4 @@
-import { Locator, Page } from "@playwright/test";
+import { Locator, Page, expect } from "@playwright/test";
 import { BasePage } from "../basePage/basePage";
 import { CatalogPage } from "../catalogPage/catalogPage";
 import { CheckoutPage } from "../checkoutPage/checkoutPage";
@@ -7,7 +7,6 @@ export  class CartPage extends BasePage {
     private cartTittle: Locator
     private checkoutBtn: Locator
     private backToCatalogBtn: Locator
-    
     
 
     constructor(page: Page) {
@@ -20,6 +19,20 @@ export  class CartPage extends BasePage {
 
     async waitForLoad(): Promise<void> {
         await this.cartTittle.waitFor({state: 'visible'})
+    }
+
+    async verifyCartItem(name: string): Promise<void> {
+        const cartItem = this.page.locator('[data-test="inventory-item"]').filter({
+            hasText: name
+        })
+        await expect(cartItem).toBeVisible()
+        await expect(cartItem).toContainText(name)
+    }
+
+    async verifyCartItems(items: string[]): Promise<void> {
+        for(const item of items) {
+            await this.verifyCartItem(item)
+        }
     }
 
     async backToShopping(): Promise<CatalogPage> {

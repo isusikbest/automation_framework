@@ -4,7 +4,7 @@ import { CheckoutPage } from "../checkoutPage/checkoutPage";
 import { FinishedPurchasePage } from "../finishedPurhcasePage/finishedPurchasePage";
 
 
-export class ConfrirmPage extends BasePage {
+export class ConfirmPage extends BasePage {
     private cancelPurchaseBtn: Locator
     private totalPrice: Locator
     private shippingInfo: Locator

@@ -10,6 +10,7 @@ export class CatalogPage extends BasePage {
     private addToCartText: string = 'Add to Cart'
     private item: Locator
     private sortBy: Locator
+    private productCard: Locator
 
     constructor(page: Page) {
         super(page)
@@ -17,16 +18,25 @@ export class CatalogPage extends BasePage {
         this.cartBtn = page.locator('[data-test="shopping-cart-link"]')
         this.item = page.locator('.inventory_item')
         this.sortBy = page.locator('[data-test="product_sort_container"]')
+        this.productCard = page.locator('.inventory_item')
     }
 
-    async addToCart(index: number): Promise<void> {
-        const item = this.item.nth(index)
+    async addToCartByNames(names: string[]): Promise<void> {
+        for(const name of names) {
+            const item  = this.item.filter({
+               has: this.page.getByText(name) 
+            })
         await item.getByRole('button', {name: this.addToCartText}).click()
+        }
     }
 
-    async removeItemFromCart(index: number): Promise<void> {
-        const item = this.item.nth(index)
+    async removeItemFromCart(names: string[]): Promise<void> {
+        for(const name of names) {
+            const item  = this.item.filter({
+               has: this.page.getByText(name) 
+            })
         await item.getByRole('button', {name: this.removeBtnText}).click()
+        }
     }
 
     async selectItemByName(name: string): Promise<ItemPage> {

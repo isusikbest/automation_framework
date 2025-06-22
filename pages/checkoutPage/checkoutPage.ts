@@ -1,6 +1,6 @@
 import { Locator, Page } from "@playwright/test";
 import { BasePage } from "../basePage/basePage";
-import { ConfrirmPage } from "../confirmPage/confirmPage";
+import { ConfirmPage } from "../confirmPage/confirmPage";
 import { CartPage } from "../cartPage/cartPage";
 
 
@@ -30,7 +30,13 @@ export class CheckoutPage extends BasePage {
 
     async checkout(): Promise<ConfrirmPage> {
         await this.continueBtn.click()
-        return new ConfrirmPage(this.page)
+        return new ConfirmPage(this.page)
+    }
+
+    async waitForLoad(): Promise<void> {
+        await this.firstName.waitFor({state: 'visible'})
+        await this.lastName.waitFor({state: 'visible'})
+        await this.postalCode.waitFor({state: 'visible'})
     }
 
     async cancelPurchase(): Promise<CartPage> {
