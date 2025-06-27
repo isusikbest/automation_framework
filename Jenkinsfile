@@ -4,9 +4,7 @@ pipeline {
     stages {
         stage('Build Docker Image') {
             steps {
-                script {
-                    docker.build('playwright-tests')
-                }
+                sh 'docker build -t playwright-tests .'
             }
         }
 
@@ -17,3 +15,4 @@ pipeline {
         }
     }
 }
+
